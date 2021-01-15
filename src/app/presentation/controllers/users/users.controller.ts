@@ -1,14 +1,15 @@
 import { Controller } from '@nestjs/common';
 import { Post, Body } from '@nestjs/common';
-import { AuthenticationDto } from '../../dtos';
-import { AuhenticateUserTask } from '../../../domain';
+import { UserSignInDto } from '../../dtos';
+import { SignUserTask } from '../../../domain';
 
 @Controller('v1/users')
 export class UsersController {
-  constructor(private auhenticateUserTask: AuhenticateUserTask) {}
+  constructor(private signUserTask: SignUserTask) {}
 
-  @Post('authentication')
-  login(@Body() authenticationDto: AuthenticationDto): string {
-    return this.auhenticateUserTask.execute();
+  @Post('sign')
+  async sign(@Body() body: UserSignInDto): Promise<string> {
+    const response = await this.signUserTask.execute(body);
+    return response;
   }
 }

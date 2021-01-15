@@ -1,1 +1,1 @@
-export * from './authenticate-user.task';
+export * from './sign-user.task';

@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AuhenticateUserTask } from './usecases';
+import { SignUserTask } from './usecases';
 import { DataModule } from '../data';
 
 @Module({
   imports: [DataModule],
-  exports: [AuhenticateUserTask],
-  providers: [AuhenticateUserTask],
+  exports: [SignUserTask],
+  providers: [SignUserTask],
 })
 export class DomainModule {}

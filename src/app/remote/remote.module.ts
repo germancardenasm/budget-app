@@ -1,8 +1,18 @@
 import { Module } from '@nestjs/common';
-import { AuthenticationDataSource } from './data-source';
+import { UserDataSource } from './data-source';
+import { MongooseModule } from '@nestjs/mongoose';
+import { userSchema } from './schema';
 
 @Module({
-  exports: [AuthenticationDataSource],
-  providers: [AuthenticationDataSource],
+  imports: [
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017', {
+      dbName: 'budget',
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }),
+    MongooseModule.forFeature([{ name: 'userSchema', schema: userSchema }]),
+  ],
+  exports: [UserDataSource],
+  providers: [UserDataSource],
 })
 export class RemoteModule {}

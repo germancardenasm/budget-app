@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AuthenticationRepository } from './repository';
+import { UserRepository } from './repository';
 import { RemoteModule } from '../remote';
 
 @Module({
   imports: [RemoteModule],
-  exports: [AuthenticationRepository],
-  providers: [AuthenticationRepository],
+  exports: [UserRepository],
+  providers: [UserRepository],
 })
 export class DataModule {}
